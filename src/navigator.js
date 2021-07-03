@@ -3,7 +3,9 @@ import * as React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
 // import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack'
+
 import SplaschScreen from './modul/splashScreen'
+import HomeScreen from './modul/component';
 
 // function HomeScreen({ route, navigation }) {
 //   return (
@@ -35,7 +37,8 @@ const navigationScreen = [
   { name: 'splashscreen', component: SplaschScreen,
     option: { headerTransparent: false },
   },
-  { name: 'profile', component: Profile }
+  { name: 'profile', component: Profile },
+  { name: 'home', component: HomeScreen },
   // { name: 'auth', component: Auth},
   // { name: 'camera', component: CameraScreen },
   // { name: 'login', component: Login},

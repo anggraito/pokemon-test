@@ -24,6 +24,23 @@ export const SHADOW_OPC = {
   elevation: 1
 }
 
+export const SHADOW_LIGHT = {
+  shadowColor: DARKSLATE,
+  shadowOffset: { width: 0, height: 1},
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+  elevation: 3,
+}
+
+export const SHADOW_BOTTOM = {
+  shadowColor: DARKSLATE,
+  shadowOffset: { width: 0, height: 4 },
+  shadowRadius: 6,
+  shadowOpacity: 0.2,
+  elevation: 3
+  //add parent with overflow: 'hidden'
+}
+
 export const BG_SET = {flex: 1, backgroundColor: SNOW}
 
 export const ROW_BETWEEN_CENTER = {

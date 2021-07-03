@@ -8,7 +8,7 @@ import images from '../images'
 export default function SplaschScreen({navigation}) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('profile')
+      navigation.navigate('home')
     }, 1000)
   })
 
