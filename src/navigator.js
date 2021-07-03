@@ -6,47 +6,28 @@ import {createStackNavigator} from '@react-navigation/stack'
 
 import SplaschScreen from './modul/splashScreen'
 import HomeScreen from './modul/component';
+import ListPokemon from './modul/component/pokemon';
+import ListItem from './modul/component/item';
+import DetailPokemon from './modul/component/pokemon/detailPokemon';
+import DetailItem from './modul/component/item/detailItem';
 
-// function HomeScreen({ route, navigation }) {
-//   return (
-//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//       <Text>Home Screen</Text>
-//       <TouchableOpacity onPress={() => navigation.navigate('profile')}>
-//         <Text>pindah ke profile</Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-// }
-function Profile({ route, navigation }) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <TouchableOpacity>
-        <Text>Back</Text>
-      </TouchableOpacity>
-      <Text>Profile</Text>
-      <TouchableOpacity onPress={() => navigation.push('auth')}>
-        <Text>pindah ke auth</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
 
 const Stack = createStackNavigator();
 
 const navigationScreen = [
-  { name: 'splashscreen', component: SplaschScreen,
-    option: { headerTransparent: false },
+  { name: 'SplashScreen', component: SplaschScreen,
+    option: { headerTransparent: true },
   },
-  { name: 'profile', component: Profile },
-  { name: 'home', component: HomeScreen },
-  // { name: 'auth', component: Auth},
-  // { name: 'camera', component: CameraScreen },
-  // { name: 'login', component: Login},
+  { name: 'Home', component: HomeScreen },
+  { name: 'Pokemon', component: ListPokemon },
+  { name: 'Potion', component: ListItem },
+  { name: 'DetailPokemon', component: DetailPokemon },
+  { name: 'DetailPotion', component: DetailItem }
 ];
 
 function AppNavigator() {
   return (
-    <Stack.Navigator initialRouteName="splashscreen">
+    <Stack.Navigator initialRouteName="SplashScreen">
       {navigationScreen.map((pages, idx) => {
         console.log( 'item' ,{...pages.option})
         return (
