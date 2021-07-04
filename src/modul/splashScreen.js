@@ -14,8 +14,6 @@ export default function SplaschScreen({navigation}) {
     }, 1000)
   })
 
-  // console.log('---', useIsFocused())
-
   return(
     <View style={[BG_SET, ITEM_CENTER]}>
       <HeaderNav hidden />

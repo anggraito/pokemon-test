@@ -6,13 +6,7 @@ import { defaultPadding, ROW_BETWEEN_CENTER, SHADOW_OPC, WHITE } from '../../hel
 
 export default function HeaderNav({colorStatus, title, hidden, iconCancel}) {
 
-  // function FocusAwareStatusBar() {
-  //   const isFocused = useIsFocused();
-
-  //   return isFocused ? <StatusBar {...props} /> : null;
-  // }
   const isFocused = useIsFocused()
-  console.log('isFoocus', isFocused)
 
   return (
     <View>

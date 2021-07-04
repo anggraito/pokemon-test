@@ -1,16 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit'
-import storage from 'redux-persist/lib/storage'
-// import {combineReducers} from "redux"; 
-import { persistReducer } from 'redux-persist'
+import {applyMiddleware, createStore, compose} from 'redux' 
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from '../redux/reducers'
+import rootSaga from '../sagas'
+import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
-import authReducer from '../modul/auth/reducersAuth'
 
-// export default configureStore({
-//   reducer: {
-//     auth    : authReducer
-//   },
-//   middleware: [thunk],
-// })
+export default function configureStore(preloadedState) {
+  const sagaMiddleware = createSagaMiddleware()
 
+  const middlewares = [sagaMiddleware, logger, thunk]
+  const middlewareEnhancer = applyMiddleware(...middlewares)
 
+  // const enhancers = [middlewareEnhancer]
+  // const composedEnhancers = compose(...enhancers)
+
+  const store = createStore(rootReducer, preloadedState, middlewareEnhancer)
+  sagaMiddleware.run(rootSaga)
+
+  return store
+}

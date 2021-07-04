@@ -6,22 +6,24 @@
  * @flow strict-local
  */
 
- import React from 'react'
+ import React, { createContext } from 'react'
  import type {Node} from 'react'
- import { StyleSheet, Text, useColorScheme, View } from 'react-native'
- import { createStackNavigator } from '@react-navigation/stack'
  import { NavigationContainer } from '@react-navigation/native'
- import AppNavigator from './src/navigator'
  import { Provider } from 'react-redux'
-//  import store from './src/store'
+
+ import AppNavigator from './src/navigator'
+ import configureStore from './src/store'
+
+ const store = configureStore()
+ const ExContext = createContext()
  
  const App: () => Node = () => {
    return (
-     <NavigationContainer>
-       {/* <Provider store={store}> */}
-         <AppNavigator />
-       {/* </Provider> */}
-     </NavigationContainer>
+    <Provider store={store} >
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </Provider>
    );
  };
  

@@ -2,8 +2,10 @@ import config from "."
 
 const constants = {}
 
-constants.SET_ACCOUNT_INFO = 'SET_ACCOUNT_INFO'
+constants.LIST_POKEMON_REQUEST = 'LIST_POKEMON_REQUEST'
+constants.LIST_POKEMON_SUCCESS = 'LIST_POKEMON_SUCCESS'
+constants.LIST_POKEMON_FAILURE = 'LIST_POKEMON_FAILURE'
+
 constants.URL = config.URL[config.environment]
-constants.pathVersion = '/v2/pokemon'
 
 export default constants
