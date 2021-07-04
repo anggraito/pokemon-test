@@ -1,9 +1,9 @@
-import config from '../config'
+import config from "."
 
 const constants = {}
 
-//auth
 constants.SET_ACCOUNT_INFO = 'SET_ACCOUNT_INFO'
+constants.URL = config.URL[config.environment]
 constants.pathVersion = '/v2/pokemon'
 
 export default constants

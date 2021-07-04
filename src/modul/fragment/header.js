@@ -4,7 +4,7 @@ import { useIsFocused } from '@react-navigation/native'
 import { normalize } from '../../helpers/scallingSize'
 import { defaultPadding, ROW_BETWEEN_CENTER, SHADOW_OPC, WHITE } from '../../helpers/globalStyles'
 
-export default function HeaderNav({colorStatus, title, hidden}) {
+export default function HeaderNav({colorStatus, title, hidden, iconCancel}) {
 
   // function FocusAwareStatusBar() {
   //   const isFocused = useIsFocused();
@@ -21,6 +21,7 @@ export default function HeaderNav({colorStatus, title, hidden}) {
       {!hidden && <View style={{backgroundColor: WHITE, ...SHADOW_OPC, ...ROW_BETWEEN_CENTER, ...defaultPadding}}>
         <Text>{title}</Text>
       </View>}
+      {iconCancel && <Image />}
     </View>
   )
 }
