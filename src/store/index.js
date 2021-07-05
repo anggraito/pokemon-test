@@ -15,8 +15,8 @@ export default function configureStore(preloadedState) {
   // const enhancers = [middlewareEnhancer]
   // const composedEnhancers = compose(...enhancers)
 
-  const store = createStore(rootReducer, preloadedState, middlewareEnhancer)
-  sagaMiddleware.run(rootSaga)
+  const store = {...createStore(rootReducer, preloadedState, middlewareEnhancer), runSaga: sagaMiddleware.run}
+  store.runSaga(rootSaga)
 
   return store
 }

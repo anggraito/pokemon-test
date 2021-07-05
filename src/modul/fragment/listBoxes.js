@@ -4,9 +4,9 @@ import { ROW_BETWEEN_CENTER, SHADOW_BOTTOM, WHITE } from '../../helpers/globalSt
 import { normalize } from '../../helpers/scallingSize'
 import images from '../../images'
 
-export default function ListBoxes({textName, pressAction}) {
+export default function ListBoxes({textName, pressAction, stylesAdd}) {
   return (
-    <View style={{marginVertical: 5}}>
+    <View style={{marginVertical: 5, ...stylesAdd}}>
       <TouchableOpacity onPress={pressAction} 
       style={{...ROW_BETWEEN_CENTER, paddingHorizontal: 20, backgroundColor: WHITE, ...SHADOW_BOTTOM, height: normalize(58), borderRadius: 10}}>
         <Text>{textName}</Text>

@@ -1,23 +1,18 @@
 import React, {useCallback, useEffect, useState } from 'react'
-import { View } from 'react-native'
-import { useDispatch } from 'react-redux'
-// import { useDispatch } from 'react-redux'
-import { WHITE } from '../../../helpers/globalStyles'
-import actionsAPI from '../../../redux/action/pokemon'
-import HeaderNav from '../../fragment/header'
+import { View, FlatList, ActivityIndicator, SafeAreaView } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { DARKGOLDEN, GOLD, WHITE } from '../../../helpers/globalStyles'
 import ListBoxes from '../../fragment/listBoxes'
+import HeaderNav from '../../fragment/header'
 
 export default function ListPokemon({navigation}) {
   const [data, setData] = useState([])
   const dispatch = useDispatch()
-  //const { dispatch } = props
+  const {pokemon} = useSelector(state => state)
+  console.log('________________ST_______', pokemon, pokemon.data)
 
   useEffect(() => {
-    console.log('useEffect')
     listPokemonAPI()
-    //dispatch(actionsAPI.getListPokemon())
-    // dispatch(actionsAPI.getListPokemon())
-    // actionsAPI.getListPokemon()
   },[])
 
   const listPokemonAPI = useCallback(
@@ -25,11 +20,20 @@ export default function ListPokemon({navigation}) {
   )
 
   return (
-    <View>
+    <SafeAreaView>
       <HeaderNav colorStatus={WHITE} title="List Pokemon" />
-      <View style={{paddingHorizontal: 20, paddingVertical: 15}}>
-        <ListBoxes textName='List Pokemon' pressAction={() => navigation.navigate('DetailPokemon')} />
+      <View style={{marginHorizontal: 10, paddingVertical: 15}}>
+        {/* <ListBoxes textName='List Pokemon' pressAction={() => navigation.navigate('DetailPokemon')} /> */}
+        {pokemon.isLoading ? <ActivityIndicator size='small' color={DARKGOLDEN} />
+        : <FlatList data={pokemon.data} 
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id}
+          renderItem={({item, index}) => (
+            <ListBoxes key={index} textName={item.name} 
+            stylesAdd={{paddingHorizontal: 10}}
+            pressAction={() => navigation.navigate('DetailPokemon')} />
+        )} />}
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
