@@ -29,7 +29,6 @@ function AppNavigator() {
   return (
     <Stack.Navigator initialRouteName="SplashScreen">
       {navigationScreen.map((pages, idx) => {
-        console.log( 'item' ,{...pages.option})
         return (
         <Stack.Screen
           key={idx}
