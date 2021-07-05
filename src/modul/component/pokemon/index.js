@@ -9,7 +9,7 @@ export default function ListPokemon({navigation}) {
   const [data, setData] = useState([])
   const dispatch = useDispatch()
   const {pokemon} = useSelector(state => state)
-  console.log('________________ST_______', pokemon, pokemon.data)
+  // console.log('________________ST_______', pokemon, pokemon.data)
 
   useEffect(() => {
     listPokemonAPI()
@@ -31,7 +31,7 @@ export default function ListPokemon({navigation}) {
           renderItem={({item, index}) => (
             <ListBoxes key={index} textName={item.name} 
             stylesAdd={{paddingHorizontal: 10}}
-            pressAction={() => navigation.navigate('DetailPokemon')} />
+            pressAction={() => navigation.navigate('DetailPokemon', {pokemonName: item.name, urlDetail: item.url})} />
         )} />}
       </View>
     </SafeAreaView>
