@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import constants from '../config/constants'
-import { getDetailPokemon } from '../redux/action'
 
 export function* fetchListPokemon() {
   yield takeEvery(constants.LIST_POKEMON_REQUEST, sagaPokemon)
