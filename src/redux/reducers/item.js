@@ -22,7 +22,7 @@ export default itemMonReducer = (state=initialState, action) => {
     case constants.DETAIL_ITEM_REQUEST:
       return { ...state , detailLoading: true }
     case constants.DETAIL_ITEM_SUCCESS:
-      return { ...state , detailData: {...payload}, detailLoading: false, detailFound: true }
+      return { ...state , detailData: { ...state.detailData, ...action.payload}, detailLoading: false, detailFound: true }
     case constants.DETAIL_ITEM_FAILURE:
       return { ...state , detailLoading: false, detailFound: false }
     default:

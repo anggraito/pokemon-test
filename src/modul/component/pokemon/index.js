@@ -4,26 +4,35 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BG_SET, DARKGOLDEN, GOLD, WHITE } from '../../../helpers/globalStyles'
 import ListBoxes from '../../fragment/listBoxes'
 import HeaderNav from '../../fragment/header'
+import { getListPokemon } from '../../../redux/action/pokemon'
+import { PokemonProvider } from './pokemonContext'
 
 export default function ListPokemon({navigation}) {
-  const [data, setData] = useState([])
   const dispatch = useDispatch()
+  const [listPokemon, setListPokemon] = useState([])
   const {pokemon} = useSelector(state => state)
-  // console.log('________________ST_______', pokemon, pokemon.data)
 
   useEffect(() => {
     listPokemonAPI()
   },[])
 
-  const listPokemonAPI = useCallback(
-    () => dispatch({type: 'LIST_POKEMON_REQUEST'}), [dispatch]
-  )
+  const listPokemonAPI = useCallback(() => {
+    dispatch({type: 'LIST_POKEMON_REQUEST'}), [dispatch] //redux-saga
+    // dispatch(getListPokemon()) // context
+    // .then(res => {
+    //   setLoading(false)
+    //   if (res.status === 200) {
+    //     setListPokemon(res.data.results)
+    //   } else console.log('toast error')
+    // })
+    // .catch(err => console.log('err---->', err))
+  })
 
   return (
     <SafeAreaView style={BG_SET}>
       <HeaderNav colorStatus={WHITE} title="List Pokemon" />
       <View style={{marginHorizontal: 10, paddingTop: 15, flex: 1}}>
-        {pokemon.isLoading ? <ActivityIndicator size='small' color={DARKGOLDEN} />
+        {pokemon.isLoading ? <ActivityIndicator size='small' color={DARKGOLDEN} /> //redux-saga loading
         : <FlatList data={pokemon.data} 
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item.id}

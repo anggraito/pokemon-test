@@ -6,20 +6,21 @@ import { normalize } from '../../../helpers/scallingSize'
 
 export default function DetailPokemon({route}) {
   const [detailLoad, setDetailLoad] = useState(true)
+  
   const dispatch = useDispatch()
   const {pokemonName, urlDetail} = route.params
   const {detailData, detailLoading, detailFound} = useSelector(state => state.pokemon)
 
-  console.log('DE', detailData)
+  // console.log('DE', detailData)
   
   useEffect(() => {
     detailPokemonAPI()
   }, [])
 
-  const detailPokemonAPI = useCallback(() => 
-    dispatch({type: 'DETAIL_POKEMON_REQUEST', urlDetail}), [dispatch]
-    // dispatch(getDetailPokemon(urlDetail))
-  ) 
+  const detailPokemonAPI = useCallback(() => {
+    // setDetailData(urlDetail)
+    dispatch({type: 'DETAIL_POKEMON_REQUEST', urlDetail}), [dispatch] //redux-saga
+  }) 
 
   return (
     <View style={BG_SET}>
@@ -48,5 +49,3 @@ export default function DetailPokemon({route}) {
     </View>
   )
 }
-
-{/* <DetailList dataDetail={'test'} itemName={pokemonName} /> */}
