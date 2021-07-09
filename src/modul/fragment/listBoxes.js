@@ -6,9 +6,9 @@ import images from '../../images'
 
 export default function ListBoxes({textName, pressAction, stylesAdd}) {
   return (
-    <View style={{marginVertical: 5, ...stylesAdd}}>
+    <View style={stylesAdd}>
       <TouchableOpacity onPress={pressAction} 
-      style={{...ROW_BETWEEN_CENTER, paddingHorizontal: 20, backgroundColor: WHITE, ...SHADOW_BOTTOM, height: normalize(58), borderRadius: 10}}>
+      style={{...ROW_BETWEEN_CENTER, marginVertical: 5, paddingHorizontal: 20, backgroundColor: WHITE, ...SHADOW_BOTTOM, height: normalize(58), borderRadius: 10}}>
         <Text>{textName}</Text>
         <Image source={images.icon_next} style={{width: normalize(8), height: normalize(12)}} />
       </TouchableOpacity>

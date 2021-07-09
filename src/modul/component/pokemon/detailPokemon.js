@@ -1,26 +1,26 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { View, Image, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { BG_SET, DARKGOLDEN, DARKSLATE, ITEM_CENTER, LIGHTLATE, SCREEN_HEIGHT, SHADOW_BOTTOM, WHITE } from '../../../helpers/globalStyles'
 import { normalize } from '../../../helpers/scallingSize'
-import { getDetailPokemon } from '../../../redux/action'
-import DetailList from '../../fragment/detailList'
 
 export default function DetailPokemon({route}) {
+  const [detailLoad, setDetailLoad] = useState(true)
+  
   const dispatch = useDispatch()
   const {pokemonName, urlDetail} = route.params
-  const {detailData} = useSelector(state => state.pokemon)
+  const {detailData, detailLoading, detailFound} = useSelector(state => state.pokemon)
 
-  console.log('DE', detailData)
+  // console.log('DE', detailData)
   
   useEffect(() => {
     detailPokemonAPI()
   }, [])
 
-  const detailPokemonAPI = useCallback(() => 
-    dispatch({type: 'DETAIL_POKEMON_REQUEST', urlDetail}), [dispatch]
-    // dispatch(getDetailPokemon(urlDetail))
-  ) 
+  const detailPokemonAPI = useCallback(() => {
+    // setDetailData(urlDetail)
+    dispatch({type: 'DETAIL_POKEMON_REQUEST', urlDetail}), [dispatch] //redux-saga
+  }) 
 
   return (
     <View style={BG_SET}>
@@ -44,9 +44,8 @@ export default function DetailPokemon({route}) {
           <Text style={{width: normalize(100)}}>Height</Text>
           <Text>: {detailData.height} m</Text>
         </View>
-      </View></>}
+      </View>
+      </>}
     </View>
   )
 }
-
-{/* <DetailList dataDetail={'test'} itemName={pokemonName} /> */}
